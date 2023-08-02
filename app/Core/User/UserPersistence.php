@@ -8,6 +8,7 @@ class UserPersistence implements IUserPersistence
     function create(User $data): void
     {
         $table = new UserModel();
+        $table->id = $data->id;
         $table->first_name = $data->firstName;
         $table->last_name = $data->lastName;
         $table->user_name = $data->userName;
@@ -20,12 +21,12 @@ class UserPersistence implements IUserPersistence
         $result = UserModel::firstWhere('user_name', $userName);
         if (is_null($result)) return null;
 
-        $user = new User();
-        $user->id = $result->id;
-        $user->firstName = $result->first_name;
-        $user->lastName = $result->last_name;
-        $user->userName = $result->user_name;
-        $user->createdAt = $result->created_at;
-        return $user;
+        $data = new User();
+        $data->id = $result->id;
+        $data->firstName = $result->first_name;
+        $data->lastName = $result->last_name;
+        $data->userName = $result->user_name;
+        $data->createdAt = $result->created_at;
+        return $data;
     }
 }
