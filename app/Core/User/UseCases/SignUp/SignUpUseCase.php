@@ -5,6 +5,7 @@ namespace App\Core\User\UseCases\SignUp;
 use App\Core\User\IUserPersistence;
 use App\Core\User\User;
 use App\Exceptions\BadRequestException;
+use App\Exceptions\CustomError;
 use App\External\Auth\Auth;
 use App\External\Auth\IAuthService;
 
@@ -22,7 +23,7 @@ class SignUpUseCase
     function execute(SignUpRequest $request): void {
 
         $userNameExists = $this->userPersistence->getByUserNameOrNull($request->userName);
-        if(!is_null($userNameExists)) throw new BadRequestException('INVALID_USER_NAME');
+        if(!is_null($userNameExists)) throw new BadRequestException(CustomError::INVALID_USER_NAME);
 
         $auth = new Auth();
         $auth->userName = $request->userName;
