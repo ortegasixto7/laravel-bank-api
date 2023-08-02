@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 class AuthService implements IAuthService
 {
 
-    function create(Auth $data): string
+    function create(Auth $data): void
     {
         $table = new AuthModel();
         $table->id = $data->id;
@@ -16,7 +16,6 @@ class AuthService implements IAuthService
         $table->roles = implode(",", $data->roles);
         $table->created_at = microtime(true) * 1000;
         $table->save();
-        return $table->id;
     }
 
     function getByUserNameOrNull(string $userName): ?Auth

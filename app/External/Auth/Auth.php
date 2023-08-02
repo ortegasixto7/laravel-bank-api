@@ -15,5 +15,6 @@ class Auth
     public function __construct()
     {
         $this->id = (string) Str::uuid();
+        $this->roles = [AuthRole::USER->value];
     }
 }

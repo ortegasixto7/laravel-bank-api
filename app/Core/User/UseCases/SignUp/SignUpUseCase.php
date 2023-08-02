@@ -27,7 +27,6 @@ class SignUpUseCase
         $auth = new Auth();
         $auth->userName = $request->userName;
         $auth->password = $request->password;
-        $auth->roles = ['USER'];
 
         $user = new User();
         $user->id = $auth->id;
