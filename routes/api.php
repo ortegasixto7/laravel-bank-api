@@ -19,3 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/users/sign-up/v1', [\App\Http\Controllers\UserController::class, 'signUp']);
+Route::get('/', function(){
+    return 'Hello World';
+});
